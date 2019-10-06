@@ -10,17 +10,77 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izimodal/1.5.1/css/iziModal.min.css">
+    <link rel="stylesheet" href="/public/css/login.css">
 </head>
-<div class="form-group">
+<!-- <div class="form-group">
     <label for="test1">Test Input 1</label>
     <input type="text" class="form-control" name="test" id="test1" placeholder="hello!">
     <label for="test2">Test Input 2</label>
     <input type="text" class="form-control" name="test" id="test2" placeholder="hello again!">
     <hr>
     <button type="submit" class="btn btn-primary" id='submit'>Submit</button>
-</div>
+</div> -->
 
 <body>
+    <!-- Modal structure -->
+    <div id="modal">
+        <!-- data-iziModal-fullscreen="true"    data-iziModal-subtitle="Subtitle"   -->
+        <!-- Modal content -->
+        <form>
+            <ul class="nav nav-tabs final-login">
+                <li class="active"><a data-toggle="tab" href="#sectionA" id="sign-up">Sign Up</a></li>
+                <li><a data-toggle="tab" href="#sectionB" id="sign-in">Login</a></li>
+            </ul>
+            <div id="sectionA" class="tab-pane active">
+                <label>
+                    <p class="label-txt">EMAIL</p>
+                    <input type="text" class="input">
+                    <div class="line-box">
+                        <div class="line"></div>
+                    </div>
+                </label>
+                <label>
+                    <p class="label-txt">NAME</p>
+                    <input type="text" class="input">
+                    <div class="line-box">
+                        <div class="line"></div>
+                    </div>
+                </label>
+                <label>
+                    <p class="label-txt">PASSWORD</p>
+                    <input type="text" class="input">
+                    <div class="line-box">
+                        <div class="line"></div>
+                    </div>
+                </label>
+            </div>
+            <div id="sectionB" class="tab-pane fade">
+                <label>
+                    <p class="label-txt">EMAIL</p>
+                    <input type="text" class="input">
+                    <div class="line-box">
+                        <div class="line"></div>
+                    </div>
+                </label>
+                <label>
+                    <p class="label-txt">PASSWORD</p>
+                    <input type="text" class="input">
+                    <div class="line-box">
+                        <div class="line"></div>
+                    </div>
+                </label>
+            </div>
+            <button type="submit" id="signup">submit</button>
+        </form>
+    </div>
+
+    <!-- Trigger to open Modal -->
+    <a href="#" class="trigger" target="_blank">Modal</a>
+
+
+
+
 
     <!-- Optional JavaScript -->
     <!-- jQuery first, then Popper.js, then Bootstrap JS -->
@@ -31,6 +91,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/izimodal/1.5.1/js/iziModal.min.js"></script>
     <script src="/public/js/login.js"></script>
 </body>
 
