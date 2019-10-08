@@ -1,9 +1,17 @@
-$(document).ready(() => {
+
+
+
+$('login.html').ready(() => {
+    // var uId = {}
+    // exports.uId = uId;
     //had issues with .tab-pane so hiding instead
     $('#sectionB').hide();
 
     $('#submit').click(function (e) {
         e.preventDefault();
+        $("#modal").iziModal({
+            width: 1000
+        });
 
         var course = {
             course_name: 'DubSauce',
@@ -158,9 +166,12 @@ $(document).ready(() => {
 
     });
 
-    $("#modal").iziModal({
-        width: 1000
-    });
+
+    /*=============================================
+    =           Signup/Login Modal/Form            =
+    =============================================*/
+
+
 
     $(document).on('click', '.trigger', function (event) {
         event.preventDefault();
@@ -180,7 +191,11 @@ $(document).ready(() => {
         };
     });
 
-    //show and hide login vs sign-up
+
+    /*=============================================
+    =     show and hide login vs sign-up          =
+    =============================================*/
+
     $('#sign-in').click(function (e) {
         e.preventDefault();
         $('#sectionA').hide();
@@ -195,10 +210,13 @@ $(document).ready(() => {
     });
 
 
-    //sign-up js
-    //get email and password
+
+    /*=============================================
+    =            Sign up            =
+    =============================================*/
     var signUpEmail = $('#sign-up-email');
     var signUpPassword = $('#sign-up-password');
+    var newUserId = 0;
 
     $('#signup').click(function (e) {
         e.preventDefault();
@@ -220,7 +238,10 @@ $(document).ready(() => {
             email: email,
             password: password
         }).then((data) => {
-            window.location.replace('/profile');
+            newUserId = data.id
+            console.log(newUserId);
+            // module.exports.exportedVar = data;
+            window.location.replace('/course_create');
         }).catch(handleLoginErr)
     }
 
@@ -229,7 +250,9 @@ $(document).ready(() => {
         $("#alert").fadeIn(500);
     }
 
-    //login js
+    /*=============================================
+    =            Login            =
+    =============================================*/
     var loginEmail = $('#login-email');
     var loginPassword = $('#login-password');
 
@@ -261,6 +284,43 @@ $(document).ready(() => {
         })
     }
 });
+
+$('create_course.html').ready(function () {
+    /*=============================================
+=            Course Creation            =
+=============================================*/
+
+    $('#create-course').click(function (e) {
+        e.preventDefault();
+        var genre = $('#sel1').val();
+        var numberOfContent = $('#sel3').val();
+        var focuses = [];
+        var checkBoxId = 1;
+        $.each($('input[name="focus"]:checked'), () => {
+            focuses.push($(`#inlineCheckbox${checkBoxId}`).val());
+            checkBoxId++;
+        })
+
+        let newCourse = {
+            course_name: 'somthing cool',
+            resources: numberOfContent,
+            genre: genre,
+            UserId: 1
+        }
+
+        /*----------  Course and content generation  ----------*/
+        $.ajax({
+            method: 'POST',
+            url: '/api/course',
+            data: newCourse,
+        }).then((res) => {
+            course_id = res.id;
+            searchCount = res.resources;
+            console.log(course_id, searchCount);
+        });
+    });
+});
+
 
 
 

@@ -22,8 +22,9 @@ module.exports = (app) => {
         db.User.create({
             email: req.body.email,
             password: req.body.password
-        }).then(() => {
+        }).then((result) => {
             // console.log('Entry created!')
+            res.json(result)
         })
             .then(() => {
                 res.redirect(307, '/api/login');
@@ -35,6 +36,7 @@ module.exports = (app) => {
 
     // Route for logging user out 
     app.get('/logout', (req, res) => {
+        console.log('logout');
         req.logout();
         res.redirect('/');
     });
