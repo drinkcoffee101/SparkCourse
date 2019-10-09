@@ -81,7 +81,14 @@
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/izimodal/1.5.1/js/iziModal.min.js"></script>
-    <script src="/public/js/login.js"></script>
+    <!-- iziModal.min.js"></script> -->
+    <script data-main="/public/js/config.js" src="/public/js/require.js"></script>
+    <!-- <script>
+        require(['config'], () => {
+            require(['create_course']);
+        });
+    </script> -->
+    <script type="module" src="/public/js/login.js"></script>
 </body>
 
 </html>

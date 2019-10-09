@@ -1,63 +1,26 @@
+// define([]), (test) =>{
+//     var test = 0;
+
+//     // testfcn.print = () =>{
+//     //     console.log('hi');
+//     //     alert("hi");
+//     // }
+//     return test;
+// }
+// var requirejs = require(['require']);
 
 
 
-$('login.html').ready(() => {
+$(document).ready(() => {
     // var uId = {}
     // exports.uId = uId;
     //had issues with .tab-pane so hiding instead
+
     $('#sectionB').hide();
+
 
     $('#submit').click(function (e) {
         e.preventDefault();
-        $("#modal").iziModal({
-            width: 1000
-        });
-
-        var course = {
-            course_name: 'DubSauce',
-            resources: 9,
-            genre: 'Dubstep',
-            UserId: 1
-        }
-
-        var user = {
-            email: 'cope@gmail.com',
-            password: '123abc'
-        }
-
-        var user_id = 1;
-
-        var course_id = 4;
-
-        var test_courses = [
-            {
-                type: 'video',
-                length: 1234,
-                focus: 'arrangment',
-                title: 'Cool',
-                link: 'yeah.com'
-            },
-            {
-                type: 'article',
-                length: 234,
-                focus: 'mixing',
-                title: 'CH',
-                link: 'me.com'
-            },
-            {
-                type: 'video',
-                length: 123,
-                focus: 'asound design',
-                title: 'Mhm',
-                link: 'nick.com'
-            }
-        ];
-
-        var testCoursePut = {
-            completed: 1,
-            id: 4
-        }
-
 
         /*----------  Signup call  ----------*/
         // $.ajax({
@@ -216,7 +179,7 @@ $('login.html').ready(() => {
     =============================================*/
     var signUpEmail = $('#sign-up-email');
     var signUpPassword = $('#sign-up-password');
-    var newUserId = 0;
+    var newUserId = {};
 
     $('#signup').click(function (e) {
         e.preventDefault();
@@ -240,7 +203,6 @@ $('login.html').ready(() => {
         }).then((data) => {
             newUserId = data.id
             console.log(newUserId);
-            // module.exports.exportedVar = data;
             window.location.replace('/course_create');
         }).catch(handleLoginErr)
     }
@@ -283,9 +245,7 @@ $('login.html').ready(() => {
             console.log(err);
         })
     }
-});
 
-$('create_course.html').ready(function () {
     /*=============================================
 =            Course Creation            =
 =============================================*/
@@ -305,7 +265,7 @@ $('create_course.html').ready(function () {
             course_name: 'somthing cool',
             resources: numberOfContent,
             genre: genre,
-            UserId: 1
+            UserId: newUserId
         }
 
         /*----------  Course and content generation  ----------*/
@@ -314,8 +274,8 @@ $('create_course.html').ready(function () {
             url: '/api/course',
             data: newCourse,
         }).then((res) => {
-            course_id = res.id;
-            searchCount = res.resources;
+            var course_id = res.id;
+            var searchCount = res.resources;
             console.log(course_id, searchCount);
         });
     });
