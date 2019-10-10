@@ -19,19 +19,21 @@ module.exports = (app) => {
 
     // POST route for user signup
     app.post('/api/signup', (req, res) => {
-        let user = {
-            email: req.body.email,
-            password: req.body.password
-        }
+        // let user = {
+        //     email: req.body.email,
+        //     password: req.body.password
+        // }
         db.User.create({
             email: req.body.email,
             password: req.body.password
-        }).then((result) => {
-            // console.log('Entry created!')
-            res.json(result)
         })
-            .then(() => {
-                req.login(user)
+            // .then((result) => {
+            //     // console.log('Entry created!')
+
+            // })
+            .then((result) => {
+                // req.login(user)
+                // res.json(result);
                 res.redirect(307, '/api/login');
 
             })
