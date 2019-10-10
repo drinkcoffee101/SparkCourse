@@ -8,7 +8,9 @@ module.exports = (sequelize, DataTypes) => {
         focus: DataTypes.STRING,
         watched_read: { type: DataTypes.BOOLEAN, defaultValue: false },
         title: DataTypes.STRING,
-        link: DataTypes.STRING
+        link: DataTypes.STRING,
+        image: DataTypes.STRING,
+        content_code: DataTypes.STRING
     });
 
     Content.associate = (models) => {

@@ -19,6 +19,10 @@ module.exports = (app) => {
 
     // POST route for user signup
     app.post('/api/signup', (req, res) => {
+        let user = {
+            email: req.body.email,
+            password: req.body.password
+        }
         db.User.create({
             email: req.body.email,
             password: req.body.password
@@ -27,12 +31,16 @@ module.exports = (app) => {
             res.json(result)
         })
             .then(() => {
+                req.login(user)
                 res.redirect(307, '/api/login');
+
             })
             .catch((err) => {
                 res.status(401).json(err);
             });
     });
+
+
 
     // Route for logging user out 
     app.get('/logout', (req, res) => {
@@ -116,18 +124,18 @@ module.exports = (app) => {
 
     //Thus route will POST content to the contents table
     app.post('/api/course_content/', (req, res) => {
-        console.log(req.body.courses[0].CourseId);
-        req.body.courses.forEach(e => {
-            db.Content.create({
-                type: e.type,
-                length: e.length,
-                focus: e.focus,
-                title: e.title,
-                link: e.link,
-                CourseId: e.CourseID
-            })
-        });
-        // .then(() => { })
+        // console.log(req.body.courses[0].CourseId);
+        db.Content.create({
+            type: req.body.type,
+            image: req.body.image,
+            content_code: req.body.code,
+            focus: req.body.focus,
+            title: req.body.title,
+            link: req.body.link,
+            CourseId: req.body.course_id
+        })
+            .then((result) => { res.json(result) })
+            .catch((err) => { console.error(err) })
     })
 
     // This route will UPDATE the read/time_completed status of the course
