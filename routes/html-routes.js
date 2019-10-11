@@ -25,6 +25,6 @@ module.exports = (app) => {
     })
     //route to load a view for one course
     app.get('/course_view', (req, res) => {
-        res.sendFile(path.join(__dirname, '../public/create_view.html'));
+        res.sendFile(path.join(__dirname, '../public/course_view.html'));
     })
 };

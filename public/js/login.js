@@ -1,19 +1,8 @@
-// define([]), (test) =>{
-//     var test = 0;
 
-//     // testfcn.print = () =>{
-//     //     console.log('hi');
-//     //     alert("hi");
-//     // }
-//     return test;
-// }
-// var requirejs = require(['require']);
 
 
 
 $(document).ready(() => {
-    // var uId = {}
-    // exports.uId = uId;
     //had issues with .tab-pane so hiding instead
 
     $('#sectionB').hide();
@@ -21,25 +10,6 @@ $(document).ready(() => {
 
     $('#submit').click(function (e) {
         e.preventDefault();
-
-        /*----------  Signup call  ----------*/
-        // $.ajax({
-        //     method: 'POST',
-        //     url: '/api/signup',
-        //     //pass in email and password
-        //     data: newUser
-        // }).then((result) => { })
-
-        /*----------    ----------*/
-
-
-        /*----------  GET all route to get all courses associated with a user  ----------*/
-        // $.ajax({
-        //     method: 'GET',
-        //     url: '/api/course/user/' + UserId,
-        // }).then((result) => { })
-
-        /*----------    ----------*/
 
 
         /*----------  get info on one course  ----------*/
@@ -49,13 +19,6 @@ $(document).ready(() => {
         // }).then((result) => { })
         /*----------    ----------*/
 
-
-        /*----------  this route will be used to get the contents of the course to diplay on the course_view page  ----------*/
-        // $.ajax({
-        //     type: "GET",
-        //     url: "/api/course_content/" + CourseId,
-        // }).then((result) => { })
-        /*----------    ----------*/
 
 
         /*----------  POST content to the contents table
