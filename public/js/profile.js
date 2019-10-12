@@ -19,15 +19,19 @@ $(document).ready(function () {
             console.error(err)
         })
     })
-
+    // let test = 0
     $(document).on('click', 'a.btn', function () {
         courseID = $(this).data('id')
-        console.log(courseID)
+        document.cookie = courseID;
+        // console.log(courseID)
         /*----------  this route will be used to get the contents of the course to diplay on the course_view page  ----------*/
         $.ajax({
             type: "GET",
             url: "/api/course_content/" + courseID,
-        }).then((result) => { console.table(result) }).catch((err) => { console.error(err) })
+        }).then((result) => {
+            
+            window.location.replace('/course_view')
+        }).catch((err) => { console.error(err) })
     });
 
     //Function to create a card for a course 
@@ -62,4 +66,20 @@ $(document).ready(function () {
         icon2Col.append(icon2Link)
         icon2Link.append(icon2)
     }
+
+
+    /*----------  Modal JS  ----------*/
+    $(document).on('click', '.trigger', function (event) {
+        event.preventDefault();
+        $('#modal').iziModal('open');
+    });
+    $(document).on('click', '.trigger2', function (event) {
+        event.preventDefault();
+        $('#modal2').iziModal('open');
+    });
+
+
+    // console.log(test);
+    
+
 });

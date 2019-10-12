@@ -116,7 +116,7 @@ module.exports = (app) => {
     app.get('/api/course_content/:CourseId', (req, res) => {
         db.Content.findAll({
             where: {
-                CourseId: req.params.CourseId
+                CourseId: req.params.CourseId,
             }
         }).then((results) => {
             res.json(results);
@@ -133,7 +133,8 @@ module.exports = (app) => {
             focus: req.body.focus,
             title: req.body.title,
             link: req.body.link,
-            CourseId: req.body.course_id
+            CourseId: req.body.course_id,
+            UserId: req.body.UserId
         })
             .then((result) => { res.json(result) })
             .catch((err) => { console.error(err) })

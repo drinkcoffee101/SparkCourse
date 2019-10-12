@@ -1,4 +1,5 @@
 
+
 $(document).ready(function () {
     // This file just does a GET request to figure out which user is logged in
     // and updates the HTML on the page
@@ -50,18 +51,20 @@ $(document).ready(function () {
             /*=============================================
             = might be useful to store the id of the content to check for duplicates  =
             =============================================*/
+            
             $.ajax({
                 type: "GET",
                 url: `http://www.reddit.com/search.json?q=${search}&sort=relevance&limit=${searchCount}`
             }).then((data) => {
                 var mappedData = data.data.children.map(data => data.data);
                 // s
+                
                 /*----------  Enter the contents into the table (POST)  ----------*/
                 mappedData.forEach(e => {
                     let contentCode = e.id;
                     let type = 'article';
                     //don't need to reassign
-                    // let contentFocus = focus;
+                    
                     let title = e.title;
                     let link = e.url;
                     let image = e.preview ? e.preview.images[0].source.url : 'https://wearesocial-net.s3.amazonaws.com/wp-content/uploads/2015/07/2A326ECA00000578-3148329-California_based_Reddit_logo_shown_has_fired_an_employee_called_-a-6_1435919411902.jpg';
@@ -73,7 +76,8 @@ $(document).ready(function () {
                         title: title,
                         link: link,
                         image: image,
-                        course_id: course_id
+                        course_id: course_id,
+                        UserId: newUserId
                     };
                     $.ajax({
                         type: "POST",

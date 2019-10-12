@@ -10,11 +10,17 @@ module.exports = (sequelize, DataTypes) => {
         title: DataTypes.STRING,
         link: DataTypes.STRING,
         image: DataTypes.STRING,
-        content_code: DataTypes.STRING
+        content_code: DataTypes.STRING,
+        uid: DataTypes.INTEGER
     });
 
     Content.associate = (models) => {
         Content.belongsTo(models.Course, {
+            foreignKey: {
+                allowNull: false
+            }
+        });
+        Content.belongsTo(models.User, {
             foreignKey: {
                 allowNull: false
             }
