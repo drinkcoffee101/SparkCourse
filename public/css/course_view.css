@@ -2,7 +2,10 @@ body {
     background: #C5E1A5;
 }
 
-
+a, a:hover {
+    text-decoration: none;
+    color:#00A0C6; 
+}
 /* #modal {
     background: none;
     color: none;

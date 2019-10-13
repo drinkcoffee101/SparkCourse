@@ -10,11 +10,29 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izimodal/1.5.1/css/iziModal.min.css">
     <link rel="stylesheet" href="/public/css/login.css">
 </head>
 
 <body>
+    <div class='container-fluid' id="container">
+        <video autoplay muted loop>
+            <source src="/public/content/lights.mp4" type="video/mp4">
+        </video>
+        <div class="overlay">
+            <div class="container h-100 overlay">
+                <div class="row h-100 justify-content-center align-items-center" style="margin-top:350px;">
+                    <a href="#" class="trigger btn-floating btn-large btn red" style="opacity: 0.7;" target="_blank"><i
+                            class="material-icons">account_circle</i></a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
     <!-- Modal structure -->
     <div id="modal">
         <!-- Modal content -->
@@ -68,7 +86,8 @@
     </div>
 
     <!-- Trigger to open Modal -->
-    <a href="#" class="trigger" target="_blank">Modal</a>
+
+
 
 
     <!-- Optional JavaScript -->
@@ -80,19 +99,14 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
         crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/izimodal/1.5.1/js/iziModal.min.js"></script>
     <script>
         $("#modal").iziModal({
             width: 1000
         });
     </script>
-    <!-- <script data-main="/public/js/config.js" src="/public/js/require.js"></script>
-    <script>
-        require(['config'], () => {
-            require(['login']);
-        });
-    </script> -->
-    <script type="module" src="/public/js/login.js"></script>
+    <script src="/public/js/login.js"></script>
 </body>
 
 </html>

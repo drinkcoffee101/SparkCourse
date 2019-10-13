@@ -19,8 +19,8 @@ $(document).ready(function () {
             console.error(err)
         })
     })
-    // let test = 0
-    $(document).on('click', 'a.btn', function () {
+
+    $(document).on('click', 'a.red', function () {
         courseID = $(this).data('id')
         document.cookie = courseID;
         // console.log(courseID)
@@ -29,28 +29,43 @@ $(document).ready(function () {
             type: "GET",
             url: "/api/course_content/" + courseID,
         }).then((result) => {
-            
+
             window.location.replace('/course_view')
         }).catch((err) => { console.error(err) })
     });
+    
+    /*----------  delete course  ----------*/
+    $(document).on('click', 'a.blue', function () {
+        id = $(this).data('id')
+        console.log(id)
+        /*----------  this route will be used to get the contents of the course to diplay on the course_view page  ----------*/
+        $.ajax({
+            type: "DELETE",
+            url: "/api/course/" + id
+        }).then((result) => {
+
+            // window.location.replace('/course_view
+        }).catch((err) => { console.error(err) })
+    });
+    
 
     //Function to create a card for a course 
     let createCourseCard = (course) => {
         let column = $(`<div class="col-md-4 mt-5">`)
-        let card = $(`<div class="card text-center">`)
+        let card = $(`<div class="card text-center blue-grey darken-1">`)
         let image = $(`<img class="card-img-top" src="https://images.pexels.com/photos/257904/pexels-photo-257904.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Card image cap">`)
-        let body = $(`<div class="card-body">`)
+        let body = $(`<div class="card-body white-text">`)
         let title = $(`<h5 class="card-title">`)
         title.text(course.course_name)
         let footer = $(`<div class="card-footer text-muted">`)
         let iconRow = $(`<div class="row">`)
         let icon1Col = $(`<div class="col">`)
-        let icon1Link = $(`<a class='btn btn-primary'  data-id='${course.id}'>`)
+        let icon1Link = $(`<a class='btn red' data-id='${course.id}'>`)
         let icon1 = $(`<i class="fas fa-music">`)
         let icon2Col = $(`<div class="col">`)
         //link to delete route 
-        let icon2Link = $(`<a class='btn btn-primary' >`)
-        let icon2 = $(`<i class="fas fa-trash">`)
+        let icon2Link = $(`<a class='btn blue' data-id='${course.id}'><i class="material-icons">close</i></a>`)
+
 
         $('#courses').append(column)
         column.append(card)
@@ -64,7 +79,7 @@ $(document).ready(function () {
         icon1Link.append(icon1)
         iconRow.append(icon2Col)
         icon2Col.append(icon2Link)
-        icon2Link.append(icon2)
+    
     }
 
 
@@ -79,7 +94,6 @@ $(document).ready(function () {
     });
 
 
-    // console.log(test);
-    
+  
 
 });

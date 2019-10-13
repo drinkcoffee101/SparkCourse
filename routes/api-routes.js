@@ -162,14 +162,14 @@ module.exports = (app) => {
     });
 
     // This route will DELETE a course 
-    app.delete('api/course/"id', (req, res) => {
+    app.delete('/api/course/:id', (req, res) => {
         db.Course.destroy({
             where: {
                 id: req.parms.id
             }
         }).then((dbCourse) => {
             res.json(dbCourse);
-        })
+        }).catch((err) => { console.error(err) })
     });
 
     // This route will DELETE a course_content

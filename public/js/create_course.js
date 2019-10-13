@@ -15,10 +15,9 @@ $(document).ready(function () {
 
     $('#create-course').click(function (e) {
         e.preventDefault();
-        var genre = $('#sel1').val();
-        var numberOfContent = $('#sel3').val();
-        // var focuses = [];
-        var focus = $('input[name="focus"]:checked').val();
+        var genre = $('#select-genre').val();
+        var numberOfContent = $('#select-content').val();
+        var focus = $('#select-focus').val();
 
         // Add back to code once you decide how you want to search for more than one topic
         // var checkBoxId = 1;
@@ -27,7 +26,7 @@ $(document).ready(function () {
         //     checkBoxId++;
         // })
         let newCourse = {
-            course_name: 'somthing cool',
+            course_name: 'somthing really cool',
             resources: numberOfContent,
             genre: genre,
             UserId: newUserId
@@ -100,6 +99,8 @@ $(document).ready(function () {
 
         });
     });
+
+    $('select').formSelect();
 
 
 });
