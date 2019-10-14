@@ -15,11 +15,14 @@ module.exports = (sequelize, DataTypes) => {
             foreignKey: {
                 allowNull: false
             }
+        
         });
     };
 
     Course.associate = (models) => {
-        Course.hasMany(models.Content);
+        Course.hasMany(models.Content, {
+            onDelete: 'cascade'
+        });
     };
 
     return Course;

@@ -20,11 +20,11 @@ module.exports = (sequelize, DataTypes) => {
                 allowNull: false
             }
         });
-        Content.belongsTo(models.User, {
-            foreignKey: {
-                allowNull: false
-            }
-        });
+        // Content.belongsTo(models.User, {
+        //     foreignKey: {
+        //         allowNull: false
+        //     }
+        // });
     };
     return Content;
 };

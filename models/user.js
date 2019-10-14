@@ -27,8 +27,10 @@ module.exports = (sequelize, DataTypes) => {
     });
 
     User.associate = (models) => {
-        User.hasMany(models.Course);
-        User.hasMany(models.Content);
+        User.hasMany(models.Course, {
+            onDelete: 'cascade'
+        });
+        // User.hasMany(models.Content);
     };
 
     return User;

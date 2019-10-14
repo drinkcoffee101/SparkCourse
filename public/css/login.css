@@ -117,6 +117,16 @@ button:hover {
     font-size: 16px;
 }
 
+input, select, textarea{
+    color: white
+}
+
+h1 {
+    font-family: 'Mansalva', cursive;
+    color: white;
+    margin-top: 125px;
+}
+
 /*----------  Video Background  ----------*/
 
 * {

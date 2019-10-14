@@ -33,25 +33,25 @@ $(document).ready(function () {
             window.location.replace('/course_view')
         }).catch((err) => { console.error(err) })
     });
-    
+
     /*----------  delete course  ----------*/
     $(document).on('click', 'a.blue', function () {
-        id = $(this).data('id')
+        let id = $(this).data('id')
+        $(`#${id}`).fadeOut(750, function () { $(`#${id}`).remove(); })
         console.log(id)
         /*----------  this route will be used to get the contents of the course to diplay on the course_view page  ----------*/
         $.ajax({
             type: "DELETE",
             url: "/api/course/" + id
         }).then((result) => {
-
             // window.location.replace('/course_view
         }).catch((err) => { console.error(err) })
     });
-    
+
 
     //Function to create a card for a course 
     let createCourseCard = (course) => {
-        let column = $(`<div class="col-md-4 mt-5">`)
+        let column = $(`<div class="col-md-4 mt-5" id="${course.id}">`)
         let card = $(`<div class="card text-center blue-grey darken-1">`)
         let image = $(`<img class="card-img-top" src="https://images.pexels.com/photos/257904/pexels-photo-257904.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940" alt="Card image cap">`)
         let body = $(`<div class="card-body white-text">`)
@@ -79,7 +79,7 @@ $(document).ready(function () {
         icon1Link.append(icon1)
         iconRow.append(icon2Col)
         icon2Col.append(icon2Link)
-    
+
     }
 
 
@@ -94,6 +94,6 @@ $(document).ready(function () {
     });
 
 
-  
+
 
 });
