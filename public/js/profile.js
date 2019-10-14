@@ -39,7 +39,7 @@ $(document).ready(function () {
         let id = $(this).data('id')
         $(`#${id}`).fadeOut(750, function () { $(`#${id}`).remove(); })
         console.log(id)
-        /*----------  this route will be used to get the contents of the course to diplay on the course_view page  ----------*/
+        /*----------  this route will be used to delete the contents of the course   ----------*/
         $.ajax({
             type: "DELETE",
             url: "/api/course/" + id

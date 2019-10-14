@@ -50,20 +50,20 @@ $(document).ready(function () {
             /*=============================================
             = might be useful to store the id of the content to check for duplicates  =
             =============================================*/
-            
+
             $.ajax({
                 type: "GET",
                 url: `http://www.reddit.com/search.json?q=${search}&sort=relevance&limit=${searchCount}`
             }).then((data) => {
                 var mappedData = data.data.children.map(data => data.data);
                 // s
-                
+
                 /*----------  Enter the contents into the table (POST)  ----------*/
                 mappedData.forEach(e => {
                     let contentCode = e.id;
                     let type = 'article';
                     //don't need to reassign
-                    
+
                     let title = e.title;
                     let link = e.url;
                     let image = e.preview ? e.preview.images[0].source.url : 'https://wearesocial-net.s3.amazonaws.com/wp-content/uploads/2015/07/2A326ECA00000578-3148329-California_based_Reddit_logo_shown_has_fired_an_employee_called_-a-6_1435919411902.jpg';
@@ -78,19 +78,27 @@ $(document).ready(function () {
                         course_id: course_id,
                         UserId: newUserId
                     };
+
                     $.ajax({
                         type: "POST",
                         url: "/api/course_content/",
                         data: newContent,
                     }).then((results) => {
-                        console.log('Entry Made!!!')
+
                     }).catch((err) => {
                         console.error(err)
                     })
                 });
-
             }).then(() => {
-                window.location.replace('/profile');
+                $.ajax({
+                    type: 'GET',
+                    url: `https://www.googleapis.com/youtube/v3/search?part=snippet&order=relevance&type=video&videoEmbeddable=true&q=dubstep&maxResults=3&key=AIzaSyD5KalQx38fMYYOaUHTalLlKFYgUGylBfE`
+                }).then((data) => {
+                    console.table(data)
+                }).catch((err) => {
+                    console.error(err)
+                })
+                // window.location.replace('/profile');
                 //take user to profile page
                 // loginUser(signUpEmail.val().trim(),signUpPassword.val().trim())
 

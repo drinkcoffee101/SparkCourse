@@ -69,6 +69,3 @@ $(document).ready(function () {
 
 });
 
-
-
-//embed?url=
