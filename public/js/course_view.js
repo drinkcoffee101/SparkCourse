@@ -14,10 +14,12 @@ $(document).ready(function () {
 
   /*----------  Load course content info  ----------*/
   let course = document.cookie
+  // console.log(course)
   $.ajax({
     type: "GET",
     url: "/api/course_content/" + course
   }).then((result) => {
+    // console.table(result)
     createCourseContent(result);
   }).catch((err) => { console.error(err) })
 
@@ -45,7 +47,7 @@ $(document).ready(function () {
             <img src="${e.image}" class="card-img-top" alt="...">
             <div class="card-body" style="padding-bottom:0px;text-align:center">
               <h5 class="card-title">${e.title}</h5>
-              <a href="${e.link}" tagret="_blank" class="btn btn-primary">Go somewhere</a>
+              <a href="${e.link}" target="_blank" class="btn btn-primary">Go somewhere</a>
             </div>
             <div class="card-footer text-muted">
               <div class="row">

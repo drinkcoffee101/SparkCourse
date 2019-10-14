@@ -92,9 +92,39 @@ $(document).ready(function () {
             }).then(() => {
                 $.ajax({
                     type: 'GET',
-                    url: `https://www.googleapis.com/youtube/v3/search?part=snippet&order=relevance&type=video&videoEmbeddable=true&q=dubstep&maxResults=3&key=AIzaSyD5KalQx38fMYYOaUHTalLlKFYgUGylBfE`
+                    url: `https://www.googleapis.com/youtube/v3/search?part=snippet&order=relevance&type=video&videoEmbeddable=true&q=${genre}+${focus}&maxResults=${numberOfContent / 2}&key=AIzaSyD5KalQx38fMYYOaUHTalLlKFYgUGylBfE`
                 }).then((data) => {
-                    console.table(data)
+                    //returns an array of objects 
+                    //get 
+                    // id.videoId    ---build url using https://www.youtube.com/watch?v=
+                    // snippet.thumbnails.high.url 
+                    // snippet.title
+                    // 
+                    // console.log(data.items)
+                    data.items.forEach(item => {
+                        let newContent = {
+                            code: item.id.videoId,
+                            type: 'video',
+                            focus: focus,
+                            title: item.snippet.title,
+                            link: `https://www.youtube.com/watch?v=${item.id.videoId}`,
+                            image: item.snippet.thumbnails.high.url,
+                            course_id: course_id,
+                            UserId: newUserId
+                        }
+                        $.ajax({
+                            type: "POST",
+                            url: "/api/course_content/",
+                            data: newContent,
+                        }).then((results) => {
+
+                        }).catch((err) => {
+                            console.error(err)
+                        })
+                    }).then(() => {
+                        window.location.replace('/profile');
+                    })
+
                 }).catch((err) => {
                     console.error(err)
                 })
