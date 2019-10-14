@@ -53,7 +53,7 @@ $(document).ready(function () {
 
             $.ajax({
                 type: "GET",
-                url: `http://www.reddit.com/search.json?q=${search}&sort=relevance&limit=${searchCount}`
+                url: `https://www.reddit.com/search.json?q=${search}&sort=relevance&limit=${searchCount}`
             }).then((data) => {
                 var mappedData = data.data.children.map(data => data.data);
                 // s
