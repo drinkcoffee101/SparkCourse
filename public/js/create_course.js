@@ -121,24 +121,15 @@ $(document).ready(function () {
                         }).catch((err) => {
                             console.error(err)
                         })
-                    }).then(() => {
-                        window.location.replace('/profile');
                     })
-
+                    window.location.replace('/profile');
                 }).catch((err) => {
                     console.error(err)
                 })
-                // window.location.replace('/profile');
-                //take user to profile page
-                // loginUser(signUpEmail.val().trim(),signUpPassword.val().trim())
-
             })
                 .catch((err) => { console.error(err) });
-
         });
     });
-
+    /*----------  Initialize Materialize Form  ----------*/
     $('select').formSelect();
-
-
 });

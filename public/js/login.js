@@ -12,51 +12,6 @@ $(document).ready(() => {
         e.preventDefault();
 
 
-        /*----------  get info on one course  ----------*/
-        // $.ajax({
-        //     type: "GET",
-        //     url: "/api/course/" + CourseId,
-        // }).then((result) => { })
-        /*----------    ----------*/
-
-
-
-        /*----------  POST content to the contents table
-         ----------*/
-        //will be usful if a user want to replace certain content
-        // $.ajax({
-        //     type: "POST",
-        //     url: "/api/course_content/",
-        //     data: newContent
-        // }).then((result) => { })
-        /*----------    ----------*/
-
-        /*----------  Course and content generation  ----------*/
-        // $.ajax({
-        //     method: 'POST',
-        //     url: '/api/course',
-        //     data: course,
-        // }).then((res) => {
-        //     // course_id = res.id
-        //     // console.log(res.id);
-        //     // searchCount = res.resources 
-        //     // make a call to 1st API
-        //     // $.ajax({}).then((res) => { })
-        //     //"THEN" make a call to add the resources to the contents table//
-        //     // for each object, insert the courseID
-        //     test_courses.forEach(course => {
-        //         course.CourseID = res.id;
-        //     })
-        //     //add each course_content to the table
-        //     //put this probably within the future API call above
-        //     $.ajax({
-        //         method: 'POST',
-        //         url: '/api/course_content',
-        //         data: {courses: test_courses}
-        //     })
-        // })
-        /*----------    ----------*/
-
         /*----------  Update the completion status of a course  ----------*/
         // $.ajax({
         //     method: "PUT",
@@ -74,25 +29,7 @@ $(document).ready(() => {
         /*----------    ----------*/
 
 
-        /*----------  This route will DELETE a course ----------*/
-        // $.ajax({
-        //     method: "DELETE",
-        //     url: "/api/course" + courseId
-        // })
-        /*----------    ----------*/
-
-
-
-        /*----------  This route will DELETE a course ----------*/
-        // $.ajax({
-        //     method: "DELETE",
-        //     url: "/api/course_content" + contentId
-        // })
-        /*----------    ----------*/
-
     });
-
-
     /*=============================================
     =           Signup/Login Modal/Form            =
     =============================================*/

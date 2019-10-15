@@ -1,6 +1,5 @@
 // Dependencies
 // =============================================================
-// Requiring our Todo model
 var db = require("../models");
 var passport = require("../config/passport");
 // Routes
