@@ -1,13 +1,33 @@
+*{
+    font-family: 'Mansalva', cursive;
+}
+
 body {
     background: black;
 }
 
 a, a:hover {
     text-decoration: none;
-    color:#00A0C6; 
+    color: #00A0C6;
 }
+
 /* #modal {
     background: none;
     color: none;
     box-shadow: none;
+} */
+
+.ldBar {
+    /* color: white; */
+    font-family: 'Mansalva', cursive;
+    padding-top: 10px;
+    font-size: 2.1em;
+    font-weight: 900;
+    width:25%;
+    height:25%;
+    margin:auto
+}
+
+/* .brand-logo{
+    font-family: 'Mansalva', cursive;
 } */

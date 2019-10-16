@@ -98,13 +98,16 @@ module.exports = (app) => {
 
     //this route will get info on one course
     app.get('/api/course/:CourseId', (req, res) => {
+        // console.log(req.params.CourseId)
         db.Course.findOne({
             where: {
-                CourseId: req.params.CourseId
+                id: req.params.CourseId
             }
         }).then((results) => {
             res.json(results)
             // console.table(results)
+        }).catch((err) => {
+            console.error(err)
         })
     });
 
@@ -139,9 +142,9 @@ module.exports = (app) => {
             .catch((err) => { console.error(err) })
     })
 
-    // This route will UPDATE the read/time_completed status of the course
+    // This route will UPDATE the %completion of a course
     app.put('/api/course', (req, res) => {
-        db.Course.update({ completed: req.body.completed }, {
+        db.Course.update({ percentComplete: req.body.percentComplete }, {
             where: {
                 id: req.body.id
             }
@@ -151,7 +154,7 @@ module.exports = (app) => {
     });
     // This route will UPDATE the read/time_completed status of the course_content_item
     app.put('/api/course_content', (req, res) => {
-        db.Content.update({ watched_read: req.body.watched_read }, {
+        db.Content.update({ watched_read: true }, {
             where: {
                 id: req.body.id
             }

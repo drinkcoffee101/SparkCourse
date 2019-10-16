@@ -19,12 +19,6 @@ $(document).ready(function () {
         var numberOfContent = $('#select-content').val();
         var focus = $('#select-focus').val();
 
-        // Add back to code once you decide how you want to search for more than one topic
-        // var checkBoxId = 1;
-        // $.each($('input[name="focus"]:checked'), () => {
-        //     focuses.push($(`#inlineCheckbox${checkBoxId}`).val());
-        //     checkBoxId++;
-        // })
         let newCourse = {
             course_name: 'somthing really cool',
             resources: numberOfContent,
@@ -38,26 +32,17 @@ $(document).ready(function () {
             data: newCourse,
         }).then((res) => {
             var course_id = res.id;
-            var searchCount = res.resources / 2;
-            // console.log(course_id, searchCount);
-
+            var searchCount = res.resources;
             /*----------  Make 1st call to reddit api  ----------*/
-            //need to generate X sources but how do you want to mix results between focuses 
-            //so iterate through the array and then go back over it X times (the number of requested sources)
             var search = `${genre} ${focus}`
-            // console.log(search);
-
             /*=============================================
             = might be useful to store the id of the content to check for duplicates  =
             =============================================*/
-
             $.ajax({
                 type: "GET",
                 url: `https://www.reddit.com/search.json?q=${search}&sort=relevance&limit=${searchCount}`
             }).then((data) => {
                 var mappedData = data.data.children.map(data => data.data);
-                // s
-
                 /*----------  Enter the contents into the table (POST)  ----------*/
                 mappedData.forEach(e => {
                     let contentCode = e.id;
@@ -92,15 +77,8 @@ $(document).ready(function () {
             }).then(() => {
                 $.ajax({
                     type: 'GET',
-                    url: `https://www.googleapis.com/youtube/v3/search?part=snippet&order=relevance&type=video&videoEmbeddable=true&q=${genre}+${focus}&maxResults=${numberOfContent / 2}&key=AIzaSyD5KalQx38fMYYOaUHTalLlKFYgUGylBfE`
+                    url: `https://www.googleapis.com/youtube/v3/search?part=snippet&order=relevance&type=video&videoEmbeddable=true&q=${genre}+${focus}&maxResults=${numberOfContent}&key=AIzaSyD5KalQx38fMYYOaUHTalLlKFYgUGylBfE`
                 }).then((data) => {
-                    //returns an array of objects 
-                    //get 
-                    // id.videoId    ---build url using https://www.youtube.com/watch?v=
-                    // snippet.thumbnails.high.url 
-                    // snippet.title
-                    // 
-                    // console.log(data.items)
                     data.items.forEach(item => {
                         let newContent = {
                             code: item.id.videoId,

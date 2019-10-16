@@ -4,7 +4,8 @@ module.exports = (sequelize, DataTypes) => {
         resources: DataTypes.INTEGER,
         completed: { type: DataTypes.BOOLEAN, defaultValue: false },
         // date_completed: { type: DataTypes.DATE, defaultValue: '' },
-        genre: DataTypes.STRING
+        genre: DataTypes.STRING,
+        percentComplete: {type: DataTypes.INTEGER, defaultValue: 0}
     });
 
     //a course should belong to a user
