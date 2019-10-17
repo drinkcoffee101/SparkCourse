@@ -95,15 +95,16 @@ $(document).ready(function () {
                             url: "/api/course_content/",
                             data: newContent,
                         }).then((results) => {
-
+                            window.location.reload();
                         }).catch((err) => {
                             console.error(err)
                         })
                     })
-                    window.location.replace('/profile');
+                    window.location.reload();
                 }).catch((err) => {
                     console.error(err)
                 })
+                // window.location.reload();
             })
                 .catch((err) => { console.error(err) });
         });

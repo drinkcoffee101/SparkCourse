@@ -13,7 +13,9 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css"
     integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izimodal/1.5.1/css/iziModal.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="/public/css/login.css">
   <link rel="stylesheet" href="/public/css/profile.css">
 </head>
 
@@ -23,13 +25,46 @@
       <a href="#!" class="brand-logo center">SparkCourse</a>
       <ul class="left">
         <li><a href="/logout"><i class="material-icons">exit_to_app</i></a></li>
-        <li><a href="/course_create"><i class="material-icons">add_to_queue</i></a></li>
+        <li><a href="#"><i class="trigger material-icons">add_to_queue</i></a></li>
       </ul>
     </div>
   </nav>
   <div class="container-fluid">
     <div class="row" id="courses">
     </div>
+  </div>
+  <div id="modal">
+    <form>
+
+      <div class="row input-field col s12 justify-content-center">
+        <select id="select-genre">
+          <option disabled selected>Choose a genre</option>
+          <option value="Trance">Trance</option>
+          <option value="Drum and Bass">Drum and Bass</option>
+          <option value="Deep House">Deep House</option>
+          <option value="Dubstep">Dubstep</option>
+        </select>
+      </div>
+      <div class="row input-field col s12 justify-content-center">
+        <select id="select-focus">
+          <option disabled selected>Choose a Focus</option>
+          <option value="Mixing">Mixing</option>
+          <option value="Mastering">Mastering</option>
+          <option value="Sound Design">Sound Design</option>
+          <option value="Arragement">Arragement</option>
+        </select>
+      </div>
+      <div class="row input-field col s12 justify-content-center">
+        <select id="select-content">
+          <option disabled selected>Number of content</option>
+          <option value="2">Lo</option>
+          <option value="5">Med</option>
+          <option value="15">High</option>
+          <option value="30">In the reds!</option>
+        </select>
+      </div>
+      <button type="submit" id="create-course">Submit</button>
+    </form>
   </div>
 
   <!-- Optional JavaScript -->
@@ -42,7 +77,12 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/izimodal/1.5.1/js/iziModal.min.js"></script>
   <script src="/public/js/profile.js"></script>
+  <script src="/public/js/create_course.js"></script>
+  <!-- <script>
+
+  </script> -->
 </body>
 
 </html>

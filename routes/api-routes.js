@@ -163,6 +163,7 @@ module.exports = (app) => {
             console.log(dbContent);
         });
     });
+    
 
     // This route will DELETE a course 
     app.delete('/api/course/:id', (req, res) => {

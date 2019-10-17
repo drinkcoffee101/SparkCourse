@@ -1,4 +1,14 @@
 $(document).ready(function () {
+
+    $("#modal").iziModal({
+        width: 1000
+      });
+    $('.trigger').on('click', function (event) {
+        event.preventDefault();
+        // $('#modal').iziModal('setZindex', 99999);
+        // $('#modal').iziModal('open', { zindex: 99999 });
+        $('#modal').iziModal('open');
+    });
     // This file just does a GET request to figure out which user is logged in
     // and updates the HTML on the page
     //declared here so course_create api has access to this variable
@@ -11,7 +21,8 @@ $(document).ready(function () {
             method: 'GET',
             url: '/api/course/user/' + userId,
         }).then((result) => {
-            //make this a forEach
+
+
             result.forEach(course => {
                 createCourseCard(course)
             })
@@ -66,7 +77,7 @@ $(document).ready(function () {
         //link to delete route 
         let icon2Link = $(`<a class='btn blue' data-id='${course.id}'><i class="material-icons">close</i></a>`)
 
-
+        //prepend?
         $('#courses').append(column)
         column.append(card)
         card.append(image)
@@ -80,19 +91,12 @@ $(document).ready(function () {
         iconRow.append(icon2Col)
         icon2Col.append(icon2Link)
 
+        //check if the total has reached 100%, if so, fade the card
+        if (course.percentComplete == 100) {
+            $(`#${course.id}`).fadeTo("slow", 0.5, function () {
+            });
+        }
     }
-
-
-    /*----------  Modal JS  ----------*/
-    $(document).on('click', '.trigger', function (event) {
-        event.preventDefault();
-        $('#modal').iziModal('open');
-    });
-    $(document).on('click', '.trigger2', function (event) {
-        event.preventDefault();
-        $('#modal2').iziModal('open');
-    });
-
 
 
 

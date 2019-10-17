@@ -21,7 +21,7 @@ $(document).ready(function () {
     type: "GET",
     url: "/api/course_content/" + course
   }).then((result) => {
-    /
+  
     createCourseContent(result);
   }).catch((err) => { console.error(err) })
 
@@ -64,6 +64,19 @@ $(document).ready(function () {
     courseTotal += bubbleAdd
     // console.log(`Total after clicking button: ${courseTotal}`)
 
+    if (courseTotal == 100) {
+      $.ajax({
+        type: "PUT",
+        url: "/api/course",
+        data: {
+          percentComplete: courseTotal,
+          id: course
+        },
+      }).then((result) => { console.table(result) })
+        .catch((err) => { console.error(err) })
+    }
+
+
     bar1.set(courseTotal)
 
     $(`#${contentID}`).fadeTo("slow", 0.5, function () {
@@ -96,11 +109,11 @@ $(document).ready(function () {
     let output = '<div class="card-columns">';
     //calculate the value to give to each content
     //when the content is complete, it will add to the percent completion 
-    
-    addToPercentBubble = (100 / data.length).toFixed
+
+    addToPercentBubble = (100 / data.length).toFixed()
     //if statment to check if item has been complete
     data.forEach(e => {
-      if(e.watched_read){
+      if (e.watched_read) {
         output += `
         <div class="card blue-grey darken-1" id="${e.id}" style="opacity:0.5">
         <img src="${e.image}" class="card-img-top" alt="...">
@@ -124,8 +137,8 @@ $(document).ready(function () {
         </div>
       </div>`
       }
-      else{
-      output += `
+      else {
+        output += `
             <div class="card blue-grey darken-1" id="${e.id}">
             <img src="${e.image}" class="card-img-top" alt="...">
             <div class="card-body" style="padding-bottom:0px;text-align:center">
