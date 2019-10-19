@@ -77,7 +77,7 @@ module.exports = (app) => {
         // console.log(req.body);
         // `${req.body.genre} ${randomWords()}`
         db.Course.create({
-            course_name: req.body.course_name,
+            course_name: `${req.body.genre} ${randomWords()}`,
             resources: req.body.resources,
             genre: req.body.genre,
             UserId: req.body.UserId
