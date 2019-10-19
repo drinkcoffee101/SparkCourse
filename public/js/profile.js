@@ -2,7 +2,7 @@ $(document).ready(function () {
 
     $("#modal").iziModal({
         width: 1000
-      });
+    });
     $('.trigger').on('click', function (event) {
         event.preventDefault();
         // $('#modal').iziModal('setZindex', 99999);
@@ -27,8 +27,10 @@ $(document).ready(function () {
                 createCourseCard(course)
             })
         }).catch((err) => {
-            console.error(err)
+            console.log(err)
         })
+    }).catch((error) => {
+        console.log(error)
     })
 
     $(document).on('click', 'a.red', function () {
