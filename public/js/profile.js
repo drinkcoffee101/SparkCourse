@@ -15,14 +15,11 @@ $(document).ready(function () {
     let userId = 0;
     $.get("/api/user_data").then(function (data) {
         userId = data.id;
-    }).then(() => {
         /*----------  Get each course a user has made  ----------*/
         $.ajax({
             method: 'GET',
             url: '/api/course/user/' + userId,
         }).then((result) => {
-
-
             result.forEach(course => {
                 createCourseCard(course)
             })
