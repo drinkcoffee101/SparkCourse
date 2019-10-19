@@ -75,8 +75,9 @@ module.exports = (app) => {
     //This route should use posted information to create a course for the user
     app.post('/api/course', (req, res) => {
         // console.log(req.body);
+        // `${req.body.genre} ${randomWords()}`
         db.Course.create({
-            course_name: `${req.body.genre} ${randomWords()}`,
+            course_name: req.body.course_name,
             resources: req.body.resources,
             genre: req.body.genre,
             UserId: req.body.UserId

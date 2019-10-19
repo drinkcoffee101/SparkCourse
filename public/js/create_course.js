@@ -20,7 +20,7 @@ $(document).ready(function () {
         var focus = $('#select-focus').val();
 
         let newCourse = {
-            // course_name: 'somthing really cool',
+            course_name: 'somthing really cool',
             resources: numberOfContent,
             genre: genre,
             UserId: newUserId
