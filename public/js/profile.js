@@ -78,7 +78,7 @@ $(document).ready(function () {
         let icon2Link = $(`<a class='btn blue' data-id='${course.id}'><i class="material-icons">close</i></a>`)
 
         //prepend?
-        $('#courses').append(column)
+        $('#courses').prepend(column)
         column.append(card)
         card.append(image)
         card.append(body)

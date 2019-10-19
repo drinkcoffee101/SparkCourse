@@ -2,6 +2,11 @@
 // =============================================================
 var db = require("../models");
 var passport = require("../config/passport");
+const cheerio = require('cheerio');
+const Nightmare = require('nightmare');
+const nightmare = Nightmare();
+const randomWords = require('random-words');
+
 // Routes
 // =============================================================
 module.exports = (app) => {
@@ -71,7 +76,7 @@ module.exports = (app) => {
     app.post('/api/course', (req, res) => {
         // console.log(req.body);
         db.Course.create({
-            course_name: req.body.course_name,
+            course_name: `${req.body.genre} ${randomWords()}`,
             resources: req.body.resources,
             genre: req.body.genre,
             UserId: req.body.UserId
@@ -163,7 +168,7 @@ module.exports = (app) => {
             console.log(dbContent);
         });
     });
-    
+
 
     // This route will DELETE a course 
     app.delete('/api/course/:id', (req, res) => {
@@ -193,17 +198,44 @@ module.exports = (app) => {
         })
     });
 
-
-
-
-
-
-
-
-
-
-
-
-
+    //this route will scrape youtube
+    app.post('/api/youtube', (req, res) => {
+        nightmare
+            .goto(`https://www.youtube.com/results?search_query=${req.body.search}`)
+            .evaluate(() => { return document.querySelector('#contents').innerHTML })
+            .end()
+            .then(function (html) {
+                const $ = cheerio.load(html);
+                const items = []
+                // do something in cheerio
+                // $('#img').each((i, el) => {
+                //     const item = $(el);
+                //     //return image links
+                //     const link = $(el).attr('src');
+                //     if (link != undefined) {
+                //         console.log(link);
+                //     }
+                // })
+                $('#video-title').each((i, el) => {
+                    //link to the 1st...~8 items
+                    const link = $(el).attr('href')
+                    //title with mixed number of results
+                    // the half link thing
+                    const title = $(el).attr('title')
+                    if(link && title != undefined)
+                    items.push({
+                        title: title,
+                        link: `https://www.youtube.com${link}`,
+                        image: "https://www.thewrap.com/wp-content/uploads/2016/12/youtubelogo.jpg",
+                        code: Math.floor(Math.random() * 1000)
+                    })
+                })
+                res.json(items.slice(0, req.body.count))
+            })
+            .catch(error => {
+                console.error('Search failed:', error)
+            })
+    })
 
 };
+

@@ -20,7 +20,7 @@ $(document).ready(function () {
         var focus = $('#select-focus').val();
 
         let newCourse = {
-            course_name: 'somthing really cool',
+            // course_name: 'somthing really cool',
             resources: numberOfContent,
             genre: genre,
             UserId: newUserId
@@ -32,6 +32,7 @@ $(document).ready(function () {
             data: newCourse,
         }).then((res) => {
             var course_id = res.id;
+            document.cookie = course_id
             var searchCount = res.resources;
             /*----------  Make 1st call to reddit api  ----------*/
             var search = `${genre} ${focus}`
@@ -74,36 +75,72 @@ $(document).ready(function () {
                         console.error(err)
                     })
                 });
+                // //////////////////////////////
+                // window.location.replace('/course_view')
             }).then(() => {
                 $.ajax({
-                    type: 'GET',
-                    url: `https://www.googleapis.com/youtube/v3/search?part=snippet&order=relevance&type=video&videoEmbeddable=true&q=${genre}+${focus}&maxResults=${numberOfContent}&key=AIzaSyD5KalQx38fMYYOaUHTalLlKFYgUGylBfE`
+                    type: 'POST',
+                    url: '/api/youtube',
+                    data: {
+                        search: search,
+                        count: searchCount
+                    }
                 }).then((data) => {
-                    data.items.forEach(item => {
+                    console.log(data)
+                    data.forEach((item) => {
                         let newContent = {
-                            code: item.id.videoId,
+                            code: item.code,
                             type: 'video',
                             focus: focus,
-                            title: item.snippet.title,
-                            link: `https://www.youtube.com/watch?v=${item.id.videoId}`,
-                            image: item.snippet.thumbnails.high.url,
+                            title: item.title,
+                            link: item.link,
+                            image: item.image,
                             course_id: course_id,
                             UserId: newUserId
                         }
                         $.ajax({
                             type: "POST",
                             url: "/api/course_content/",
-                            data: newContent,
+                            data: newContent
                         }).then((results) => {
-                            window.location.reload();
+                            // window.location.reload();
                         }).catch((err) => {
                             console.error(err)
                         })
                     })
-                    window.location.reload();
+                    window.location.replace('/course_view')
                 }).catch((err) => {
                     console.error(err)
                 })
+                // $.ajax({
+                //     type: 'GET',
+                //     url: `https://www.googleapis.com/youtube/v3/search?part=snippet&order=relevance&type=video&videoEmbeddable=true&q=${genre}+${focus}&maxResults=${numberOfContent}&key=AIzaSyD5KalQx38fMYYOaUHTalLlKFYgUGylBfE`
+                // }).then((data) => {
+                //     data.items.forEach(item => {
+                //         let newContent = {
+                //             code: item.id.videoId,
+                //             type: 'video',
+                //             focus: focus,
+                //             title: item.snippet.title,
+                //             link: `https://www.youtube.com/watch?v=${item.id.videoId}`,
+                //             image: item.snippet.thumbnails.high.url,
+                //             course_id: course_id,
+                //             UserId: newUserId
+                //         }
+                //         $.ajax({
+                //             type: "POST",
+                //             url: "/api/course_content/",
+                //             data: newContent,
+                //         }).then((results) => {
+                //             window.location.reload();
+                //         }).catch((err) => {
+                //             console.error(err)
+                //         })
+                //     })
+                //     window.location.replace('/course_view')
+                // }).catch((err) => {
+                //     console.error(err)
+                // })
                 // window.location.reload();
             })
                 .catch((err) => { console.error(err) });
