@@ -76,42 +76,42 @@ $(document).ready(function () {
                     })
                 });
                 // //////////////////////////////
-                // window.location.replace('/course_view')
+                window.location.replace('/course_view')
             }).then(() => {
-                $.ajax({
-                    type: 'POST',
-                    url: '/api/youtube',
-                    data: {
-                        search: search,
-                        count: searchCount
-                    }
-                }).then((data) => {
-                    console.log(data)
-                    data.forEach((item) => {
-                        let newContent = {
-                            code: item.code,
-                            type: 'video',
-                            focus: focus,
-                            title: item.title,
-                            link: item.link,
-                            image: item.image,
-                            course_id: course_id,
-                            UserId: newUserId
-                        }
-                        $.ajax({
-                            type: "POST",
-                            url: "/api/course_content/",
-                            data: newContent
-                        }).then((results) => {
-                            // window.location.reload();
-                        }).catch((err) => {
-                            console.error(err)
-                        })
-                    })
-                    window.location.replace('/course_view')
-                }).catch((err) => {
-                    console.error(err)
-                })
+                // $.ajax({
+                //     type: 'POST',
+                //     url: '/api/youtube',
+                //     data: {
+                //         search: search,
+                //         count: searchCount
+                //     }
+                // }).then((data) => {
+                //     console.log(data)
+                //     data.forEach((item) => {
+                //         let newContent = {
+                //             code: item.code,
+                //             type: 'video',
+                //             focus: focus,
+                //             title: item.title,
+                //             link: item.link,
+                //             image: item.image,
+                //             course_id: course_id,
+                //             UserId: newUserId
+                //         }
+                //         $.ajax({
+                //             type: "POST",
+                //             url: "/api/course_content/",
+                //             data: newContent
+                //         }).then((results) => {
+                //             // window.location.reload();
+                //         }).catch((err) => {
+                //             console.error(err)
+                //         })
+                //     })
+                //     window.location.replace('/course_view')
+                // }).catch((err) => {
+                //     console.error(err)
+                // })
                 // $.ajax({
                 //     type: 'GET',
                 //     url: `https://www.googleapis.com/youtube/v3/search?part=snippet&order=relevance&type=video&videoEmbeddable=true&q=${genre}+${focus}&maxResults=${numberOfContent}&key=AIzaSyD5KalQx38fMYYOaUHTalLlKFYgUGylBfE`
