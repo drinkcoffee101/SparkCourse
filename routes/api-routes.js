@@ -2,10 +2,10 @@
 // =============================================================
 var db = require("../models");
 var passport = require("../config/passport");
-const cheerio = require('cheerio');
-const Nightmare = require('nightmare');
-const nightmare = Nightmare();
-const randomWords = require('random-words');
+// const cheerio = require('cheerio');
+// const Nightmare = require('nightmare');
+// const nightmare = Nightmare();
+// const randomWords = require('random-words');
 
 // Routes
 // =============================================================
@@ -76,7 +76,7 @@ module.exports = (app) => {
     app.post('/api/course', (req, res) => {
         // console.log(req.body);
         db.Course.create({
-            course_name: `${req.body.genre} ${randomWords()}`,
+            course_name: req.body.genre,
             resources: req.body.resources,
             genre: req.body.genre,
             UserId: req.body.UserId
