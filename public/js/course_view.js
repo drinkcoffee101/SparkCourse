@@ -1,21 +1,11 @@
 $(document).ready(function () {
 
-
-  /*----------  Modal Init  ----------*/
-  // $(".modais").iziModal({
-  //     history: false,
-  //     iframe : true,
-  //     fullscreen: true,
-  //     headerColor: '#000000',
-  //     group: 'group1',
-  //     loop: true
-  //   });
   //create a new progressBAr object so we can invoke the set() method to update the value 
   var bar1 = new ldBar("#bubble-bar");
 
   /*----------  Load course content info  ----------*/
   let course = document.cookie
-  // console.log(course)
+  
   let courseTotal;
   $.ajax({
     type: "GET",
@@ -161,9 +151,7 @@ $(document).ready(function () {
             </div>
           </div>`
       }
-      // meterCount += 1
     })
-    // console.log(meterCount-1);
     //so each click needs to have a value equeal to 100/n
     output += '</div>';
     document.getElementById('courses-container').innerHTML = output;

@@ -32,8 +32,8 @@ $(document).ready(function () {
 
     $(document).on('click', 'a.red', function () {
         courseID = $(this).data('id')
+        //Storing courseID as cookie so I can load the "course_view" page with contents with the specific courseID 
         document.cookie = courseID;
-        // console.log(courseID)
         /*----------  this route will be used to get the contents of the course to diplay on the course_view page  ----------*/
         $.ajax({
             type: "GET",
