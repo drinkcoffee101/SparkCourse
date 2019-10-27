@@ -153,6 +153,7 @@ $(document).ready(function () {
       }
     })
     //so each click needs to have a value equeal to 100/n
+    //
     output += '</div>';
     document.getElementById('courses-container').innerHTML = output;
   }
