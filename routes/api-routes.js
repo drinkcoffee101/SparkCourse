@@ -4,7 +4,6 @@ var db = require("../models");
 var passport = require("../config/passport");
 const cheerio = require('cheerio');
 const Nightmare = require('nightmare');
-const nightmare = Nightmare();
 const randomWords = require('random-words');
 
 // Routes
@@ -201,35 +200,35 @@ module.exports = (app) => {
 
     //this route will scrape youtube
     app.post('/api/youtube', (req, res) => {
+        // console.log('hello')
+        const nightmare = Nightmare();
         nightmare
             .goto(`https://www.youtube.com/results?search_query=${req.body.search}`)
-            .evaluate(() => { return document.querySelector('#contents').innerHTML })
+            .wait(1000)
+            .evaluate(() => {
+                // console.log("--------------------------------------------------------------------------------EVAL-------------------------------")
+                // console.log(document.querySelector('#contents').innerHTML)
+                return document.querySelector('#contents').innerHTML
+            })
             .end()
             .then(function (html) {
+                // console.log("--------------------------------------------------------------------------------HTML-------------------------------")
+                // console.log(html)
                 const $ = cheerio.load(html);
                 const items = []
-                // do something in cheerio
-                // $('#img').each((i, el) => {
-                //     const item = $(el);
-                //     //return image links
-                //     const link = $(el).attr('src');
-                //     if (link != undefined) {
-                //         console.log(link);
-                //     }
-                // })
                 $('#video-title').each((i, el) => {
                     //link to the 1st...~8 items
                     const link = $(el).attr('href')
                     //title with mixed number of results
                     // the half link thing
                     const title = $(el).attr('title')
-                    if(link && title != undefined)
-                    items.push({
-                        title: title,
-                        link: `https://www.youtube.com${link}`,
-                        image: "https://www.thewrap.com/wp-content/uploads/2016/12/youtubelogo.jpg",
-                        code: Math.floor(Math.random() * 1000)
-                    })
+                    if (link && title != undefined)
+                        items.push({
+                            title: title,
+                            link: `https://www.youtube.com${link}`,
+                            image: "https://www.thewrap.com/wp-content/uploads/2016/12/youtubelogo.jpg",
+                            code: Math.floor(Math.random() * 1000)
+                        })
                 })
                 res.json(items.slice(0, req.body.count))
             })

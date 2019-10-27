@@ -13,6 +13,7 @@
   <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.0.10/css/all.css"
     integrity="sha384-+d0P83n9kaQMCwj8F4RJB66tzIwOKmrdb46+porD/OvrJ+37WqIM7UoBtwHO6Nlg" crossorigin="anonymous">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+  <link rel="stylesheet" type="text/css" href="/public/css/loading-bar.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/izimodal/1.5.1/css/iziModal.min.css">
   <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
   <link rel="stylesheet" href="/public/css/login.css">
@@ -35,7 +36,6 @@
   </div>
   <div id="modal">
     <form>
-
       <div class="row input-field col s12 justify-content-center">
         <select id="select-genre">
           <option disabled selected>Choose a genre</option>
@@ -66,7 +66,11 @@
       <button type="submit" id="create-course">Submit</button>
     </form>
   </div>
-
+  <div id="modal2">
+    <div id="progressBar">
+      <div class="ldBar label-center text-center row" data-value="0" data-preset="bubble" id="bubble-bar"></div>
+    </div>
+  </div>
   <!-- Optional JavaScript -->
   <!-- jQuery first, then Popper.js, then Bootstrap JS -->
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
@@ -78,6 +82,7 @@
     crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/izimodal/1.5.1/js/iziModal.min.js"></script>
+  <script type="text/javascript" src="/public/js/loading-bar.js"></script>
   <script src="/public/js/profile.js"></script>
   <script src="/public/js/create_course.js"></script>
   <!-- <script>

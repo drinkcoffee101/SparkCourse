@@ -1,6 +1,11 @@
 
 
 $(document).ready(function () {
+    $("#modal2").iziModal({
+        width: 1000
+    });
+    //create a new progressBAr object so we can invoke the set() method to update the value 
+    var bar1 = new ldBar("#bubble-bar");
     // This file just does a GET request to figure out which user is logged in
     // and updates the HTML on the page
     //declared here so course_create api has access to this variable
@@ -15,12 +20,13 @@ $(document).ready(function () {
 
     $('#create-course').click(function (e) {
         e.preventDefault();
+        $('#modal').iziModal('close');
+        $('#modal2').iziModal('open');
         var genre = $('#select-genre').val();
         var numberOfContent = $('#select-content').val();
         var focus = $('#select-focus').val();
 
         let newCourse = {
-            // course_name: 'somthing really cool',
             resources: numberOfContent,
             genre: genre,
             UserId: newUserId
@@ -48,7 +54,6 @@ $(document).ready(function () {
                 mappedData.forEach(e => {
                     let contentCode = e.id;
                     let type = 'article';
-                    //don't need to reassign
 
                     let title = e.title;
                     let link = e.url;
@@ -63,6 +68,7 @@ $(document).ready(function () {
                         image: image,
                         course_id: course_id,
                         UserId: newUserId
+                        
                     };
 
                     $.ajax({
@@ -70,13 +76,11 @@ $(document).ready(function () {
                         url: "/api/course_content/",
                         data: newContent,
                     }).then((results) => {
-
+                        bar1.set('50')
                     }).catch((err) => {
                         console.error(err)
                     })
                 });
-                // //////////////////////////////
-                // window.location.replace('/course_view')
             }).then(() => {
                 $.ajax({
                     type: 'POST',
@@ -102,12 +106,11 @@ $(document).ready(function () {
                             url: "/api/course_content/",
                             data: newContent
                         }).then((results) => {
-                            // window.location.reload();
                         }).catch((err) => {
                             console.error(err)
                         })
                     })
-                    // window.location.replace('/course_view')
+                    $('#modal2').iziModal('close');
                     window.location.reload();
                 }).catch((err) => {
                     console.error(err)

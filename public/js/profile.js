@@ -3,6 +3,9 @@ $(document).ready(function () {
     $("#modal").iziModal({
         width: 1000
     });
+    $("#modal2").iziModal({
+        width: 1000
+    });
     $('.trigger').on('click', function (event) {
         event.preventDefault();
         // $('#modal').iziModal('setZindex', 99999);
