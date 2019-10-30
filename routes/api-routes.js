@@ -11,7 +11,7 @@ const randomWords = require('random-words');
 module.exports = (app) => {
     /*=============================================
     =            Login Routes          =
-    ==============================================*/
+    =============================================*/
     // POST route for user login 
     // Using the passport.authenticate middleware with our local strategy.
     // If the user has valid login credentials, send them to the members page.
