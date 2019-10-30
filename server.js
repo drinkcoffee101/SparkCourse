@@ -35,11 +35,14 @@ require("./routes/html-routes.js")(app);
 // =============================================================
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync().then(() => {
-  const server = app.listen(PORT, 'localhost', () => {
-    // console.log("App listening on PORT " + PORT);
-    const host = server.address().address;
-    const port = server.address().port;
+  // const server = app.listen(PORT, 'localhost', () => {
+  //   // console.log("App listening on PORT " + PORT);
+  //   const host = server.address().address;
+  //   const port = server.address().port;
 
-    console.log(`Example app listening at http://${host}:${port}`);
-  });
+  //   console.log(`Example app listening at http://${host}:${port}`);
+  // });
+  app.listen(PORT, function () {
+    console.log("Server listening on: http://localhost:" + PORT);
+});
 });
