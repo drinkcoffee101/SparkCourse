@@ -1,0 +1,7 @@
+:repo:deb https://github.com/heroku/heroku-buildpack-apt
+
+:repo:deb https://github.com/captain401/heroku-buildpack-xvfb.git
+
+:repo:deb https://github.com/causztic/heroku-electron-buildpack.git
+
+

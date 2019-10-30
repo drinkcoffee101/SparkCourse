@@ -11,24 +11,6 @@ $(document).ready(() => {
     $('#submit').click(function (e) {
         e.preventDefault();
 
-
-        /*----------  Update the completion status of a course  ----------*/
-        // $.ajax({
-        //     method: "PUT",
-        //     url: "/api/course",
-        //     data: updateCourse
-        // })
-        /*----------    ----------*/
-
-        /*----------  Update the completion status of a content item  ----------*/
-        // $.ajax({
-        //     method: "PUT",
-        //     url: "/api/course_content",
-        //     data: updateContent
-        // })
-        /*----------    ----------*/
-
-
     });
     /*=============================================
     =           Signup/Login Modal/Form            =

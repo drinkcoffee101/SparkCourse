@@ -1,6 +1,8 @@
 // Node/Express server
 var express = require("express");
 var session = require("express-session");
+// var cookieParser = require('cookie-parser');
+// var MemoryStore = require('session-memory-store')(session);
 var passport = require("./config/passport");
 // Sets up the Express App
 var app = express();
@@ -15,7 +17,14 @@ app.use(express.json());
 // Static directory
 app.use('/public', express.static('./public'));
 // We need to use sessions to keep track of our user's login status
-app.use(session({ secret: "keyboard cat", resave: true, saveUninitialized: true }));
+// app.use(cookieParser());
+
+
+app.use(session({
+  secret: "keyboard cat",
+  resave: true,
+  saveUninitialized: true
+}));
 app.use(passport.initialize());
 app.use(passport.session());
 // Routes // ========================================================
@@ -26,7 +35,11 @@ require("./routes/html-routes.js")(app);
 // =============================================================
 // Syncing our database and logging a message to the user upon success
 db.sequelize.sync().then(() => {
-  app.listen(PORT, () => {
-    console.log("App listening on PORT " + PORT);
+  const server = app.listen(PORT, 'localhost', () => {
+    // console.log("App listening on PORT " + PORT);
+    const host = server.address().address;
+    const port = server.address().port;
+
+    console.log(`Example app listening at http://${host}:${port}`);
   });
 });
