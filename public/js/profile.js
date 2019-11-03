@@ -1,4 +1,39 @@
+// import Shepherd from 'shepherd.js';
+
 $(document).ready(function () {
+
+    //create a new Tour instance for your tour
+    const tour = new Shepherd.Tour({
+        defaultStepOptions: {
+            classes: 'shadow-md bg-purple-dark',
+            scrollTo: true
+        }
+    });
+
+    //Next, add your steps
+    tour.addStep({
+        id: 'step-1',
+        text: 'Click this icon to begin making a new course!',
+        attachTo: {
+            element: '#step-one',
+            on: 'bottom'
+        },
+        classes: 'example-step-extra-class'
+    });
+
+    tour.addStep({
+        id: 'step-2',
+        text: 'Using the drop down menu, select a genre, area of focus, and how many resoucres you would like to add.',
+        attachTo: {
+            element: '.brand-logo',
+            on: 'bottom'
+        },
+        classes: 'example-step-extra-class'
+    });
+
+    //to start the tour, just call start on your Tour instance
+    // tour.start();
+
 
     $("#modal").iziModal({
         width: 1000
@@ -8,10 +43,20 @@ $(document).ready(function () {
     });
     $('.trigger').on('click', function (event) {
         event.preventDefault();
+        tour.next()
         // $('#modal').iziModal('setZindex', 99999);
         // $('#modal').iziModal('open', { zindex: 99999 });
         $('#modal').iziModal('open');
     });
+
+
+    //hide the current tour step
+    // $('#create-course').click(function (e) {
+    //     e.preventDefault();
+    //     tour.hide()
+    // }
+
+
     // This file just does a GET request to figure out which user is logged in
     // and updates the HTML on the page
     //declared here so course_create api has access to this variable
@@ -26,13 +71,32 @@ $(document).ready(function () {
             result.forEach(course => {
                 createCourseCard(course)
             })
+            //skip to the 3rd tour option after user has made a course 
+            if (result.length === 1) {
+                tour.addStep({
+                    id: 'step-3',
+                    text: 'Click this button to view the contents of your newly created course!',
+                    attachTo: {
+                        element: '.red',
+                        on: 'bottom'
+                    },
+                    classes: 'example-step-extra-class'
+                });
+                tour.next()
+                tour.next()
+                tour.next()
+            }
+            //if no courses have been made, start the tour
+            else if (result.length === 0) {
+                tour.start()
+            }
         }).catch((err) => {
             console.log(err)
         })
     }).catch((error) => {
         console.log(error)
     })
-
+    /*----------  view course  ----------*/
     $(document).on('click', 'a.red', function () {
         courseID = $(this).data('id')
         //Storing courseID as cookie so I can load the "course_view" page with contents with the specific courseID 

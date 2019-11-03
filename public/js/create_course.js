@@ -1,6 +1,7 @@
 
 
 $(document).ready(function () {
+
     $("#modal2").iziModal({
         width: 1000
     });
@@ -68,7 +69,7 @@ $(document).ready(function () {
                         image: image,
                         course_id: course_id,
                         UserId: newUserId
-                        
+
                     };
 
                     $.ajax({
