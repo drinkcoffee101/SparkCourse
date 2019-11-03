@@ -14,8 +14,14 @@
     "dialect": "mysql"
   },
   "production": {
-    "use_env_variable":"JAWSDB_URL",
-    "dialect": "mysql"
+    "username":"root",
+    "password": "J6gkh3zAy4173pLr",
+    "database": "spark_course_db",
+    "host": "localhost",
+    "dialect": "mysql",
+    "dialectOptions": {
+      "socketPath": "/cloudsql/atomic-order-257204:us-west2:sparkcoursedb"
+    }
   }
 }
 

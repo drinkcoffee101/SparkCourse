@@ -1,2 +1,4 @@
 env: flex
 runtime: nodejs
+beta_settings:
+  cloud_sql_instances: atomic-order-257204:us-west2:sparkcoursedb
