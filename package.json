@@ -5,8 +5,7 @@
   "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "preinstall": "apt-get update && apt-get install -y libgtk2.0-0 libgconf-2-4 libasound2 libxtst6 libxss1 libnss3 xvfb",
-    "start": "xvfb-run -a node build/server/index"
+    "start": "node server.js"
   },
   "repository": {
     "type": "git",
@@ -34,6 +33,7 @@
     "random-words": "^1.1.0",
     "requirejs": "^2.3.6",
     "sequelize": "^5.19.2",
-    "session-memory-store": "^1.0.0"
+    "session-memory-store": "^1.0.0",
+    "xvfb": "^0.2.3"
   }
 }

@@ -1,7 +1,7 @@
 {
   "development": {
     "username": "root",
-    "password": "Bluestone101!",
+    "password": "",
     "database": "spark_course_db",
     "host": "127.0.0.1",
     "dialect": "mysql"
