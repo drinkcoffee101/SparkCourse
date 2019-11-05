@@ -30,7 +30,7 @@ This app will spark up a free course built from resources found through reddit, 
 
 
 
-[Check the link to view the app in action!](https://vimeo.com/user104783796/review/370726605/338d0a7ca8)
+[Check the link to view the app in action!](https://youtu.be/DciZfwRgUnc)
 
 ### Snapshot
 
